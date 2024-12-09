@@ -39,7 +39,7 @@ public class FacultyController {
         List<Faculty> theFaculties = facultyService.findAll();
 
         theModel.addAttribute("faculties", theFaculties);
-        return "faculty/overview.html";
+        return "faculty/overview";
     }
 
     @GetMapping("/add")
@@ -47,7 +47,7 @@ public class FacultyController {
 
         Faculty theFaculty = new Faculty();
         theModel.addAttribute("faculty", theFaculty);
-        return "/faculty/add-form.html";
+        return "/faculty/add-form";
 
     }
 
@@ -57,9 +57,9 @@ public class FacultyController {
         facultyService.save(theFaculty);
 
         return "redirect:/faculty/add-form";
-
     }
 
+    // add new controller with Post after the update (for update and save) for redirection
     @GetMapping("/update")
     public String update (@RequestParam ("facultyId") int theId, Model theModel){
 
@@ -76,5 +76,4 @@ public class FacultyController {
 
         return "redirect:/faculty/overview";
     }
-
 }

@@ -1,4 +1,4 @@
-package com.pharaona.UniversityProject.services;
+package com.pharaona.UniversityProject.security;
 
 import com.pharaona.UniversityProject.models.AppUser;
 import com.pharaona.UniversityProject.repositories.AppUserRepository;
@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+//class for login fucntionality
+
 @Service
 public class AppUserService implements UserDetailsService {
 
@@ -17,18 +19,13 @@ public class AppUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
         AppUser appUser = repo.findByEmail(email);
 
-        if(appUser !=null){
-            var springUser = User.withUsername(appUser.getEmail())
-                    .password(appUser.getPassword())
-                    //.roles(appUser.getRole())
-                    .build();
-
-            return springUser;
+        if (appUser == null) {
+            throw new UsernameNotFoundException("User not found");
         }
 
-        return null;
+        //return CustomUserDetails
+        return new CustomUserDetails(appUser); // Pass the AppUser object to CustomUserDetails wrapped??
     }
 }

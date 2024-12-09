@@ -1,9 +1,10 @@
 package com.pharaona.UniversityProject.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class Faculty {
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,15 +14,13 @@ public class Faculty {
 
     private String description;
 
-    private String location;
+    private String email;
 
     private String phoneNumber;
 
-    private String email;
-
-    @OneToOne(mappedBy = "faculty", cascade = CascadeType.ALL)
-    private Department department;
-
+    @OneToOne
+    @JoinColumn(name = "faculty_id", referencedColumnName = "id", nullable = false)
+    private Faculty faculty;
 
     public int getId() {
         return id;
@@ -47,12 +46,12 @@ public class Faculty {
         this.description = description;
     }
 
-    public String getLocation() {
-        return location;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPhoneNumber() {
@@ -63,19 +62,11 @@ public class Faculty {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmail() {
-        return email;
+    public Faculty getFaculty() {
+        return faculty;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
     }
 }

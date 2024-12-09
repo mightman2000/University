@@ -27,6 +27,7 @@ public class SecurityConfig {
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/logout").permitAll()
                         .requestMatchers("/error").permitAll()
+                        .requestMatchers("/home").permitAll()
                         .requestMatchers("/static/**", "/images/**").permitAll()
                         .anyRequest().authenticated()
                 )
@@ -36,7 +37,7 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/home",true)
                         .permitAll()
                 )
-                .logout(config -> config.logoutSuccessUrl("/"))
+                .logout(config -> config.logoutSuccessUrl("/home"))
                 .build();
     }
 
