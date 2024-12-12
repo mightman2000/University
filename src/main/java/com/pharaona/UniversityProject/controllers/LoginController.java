@@ -12,7 +12,4 @@ public class LoginController {
 
         return "home/index";
     }
-
-
-
 }

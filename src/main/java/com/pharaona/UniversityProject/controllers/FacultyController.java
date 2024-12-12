@@ -38,7 +38,7 @@ public class FacultyController {
 
         List<Faculty> theFaculties = facultyService.findAll();
 
-        theModel.addAttribute("faculties", theFaculties);
+        theModel.addAttribute("faculty", theFaculties);
         return "faculty/overview";
     }
 
@@ -56,7 +56,7 @@ public class FacultyController {
 
         facultyService.save(theFaculty);
 
-        return "redirect:/faculty/add-form";
+        return "redirect:/faculty/overview";
     }
 
     // add new controller with Post after the update (for update and save) for redirection
@@ -76,4 +76,5 @@ public class FacultyController {
 
         return "redirect:/faculty/overview";
     }
+
 }

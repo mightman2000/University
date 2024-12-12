@@ -35,7 +35,7 @@
     </thead>
 
     <tbody>
-    <tr th:each="tempFaculty : ${faculties}">
+    <tr th:each="tempFaculty : ${faculty}">
 
       <td th:text="${tempFaculty.id}"></td>
       <td th:text="${tempFaculty.name}"></td>
@@ -61,6 +61,7 @@
     </tbody>
 
   </table>
+  <a th:href="@{/home}">Back to Home</a>
 
 </div>
 

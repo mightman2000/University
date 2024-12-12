@@ -18,8 +18,8 @@ public class Department {
 
     private String phoneNumber;
 
-    @OneToOne
-    @JoinColumn(name = "faculty_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "faculty_id", nullable = false)
     private Faculty faculty;
 
     public int getId() {

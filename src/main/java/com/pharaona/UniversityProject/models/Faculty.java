@@ -2,6 +2,8 @@ package com.pharaona.UniversityProject.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Faculty {
 
@@ -19,9 +21,8 @@ public class Faculty {
 
     private String email;
 
-    @OneToOne(mappedBy = "faculty", cascade = CascadeType.ALL)
-    private Department department;
-
+    @OneToMany(mappedBy = "faculty", cascade = CascadeType.ALL)
+    private List<Department> department;
 
     public int getId() {
         return id;
@@ -71,11 +72,11 @@ public class Faculty {
         this.email = email;
     }
 
-    public Department getDepartment() {
+    public List<Department> getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(List<Department> department) {
         this.department = department;
     }
 }
