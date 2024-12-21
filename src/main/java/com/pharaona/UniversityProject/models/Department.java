@@ -3,6 +3,9 @@ package com.pharaona.UniversityProject.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Department {
 
@@ -21,6 +24,9 @@ public class Department {
     @ManyToOne
     @JoinColumn(name = "faculty_id", nullable = false)
     private Faculty faculty;
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = false)
+    private List<Speciality> speciality = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -68,5 +74,13 @@ public class Department {
 
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
+    }
+
+    public List<Speciality> getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(List<Speciality> speciality) {
+        this.speciality = speciality;
     }
 }

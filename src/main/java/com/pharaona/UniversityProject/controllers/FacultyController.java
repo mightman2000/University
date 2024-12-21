@@ -1,8 +1,7 @@
 package com.pharaona.UniversityProject.controllers;
 
 import com.pharaona.UniversityProject.models.Faculty;
-import com.pharaona.UniversityProject.services.FacultyService;
-import jakarta.persistence.Id;
+import com.pharaona.UniversityProject.services.faculty.FacultyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;

@@ -1,4 +1,4 @@
-package com.pharaona.UniversityProject.services;
+package com.pharaona.UniversityProject.services.faculty;
 
 import com.pharaona.UniversityProject.models.Faculty;
 import com.pharaona.UniversityProject.repositories.FacultyRepository;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FacultyServiceImpl implements FacultyService{
+public class FacultyServiceImpl implements FacultyService {
 
     private FacultyRepository facultyRepository;
 
