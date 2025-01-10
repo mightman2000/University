@@ -1,4 +1,4 @@
-package com.pharaona.UniversityProject.services;
+package com.pharaona.UniversityProject.services.department;
 
 import com.pharaona.UniversityProject.models.Department;
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Save Specialty</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h3>Specialty Directory</h3>
+  <hr>
+
+  <p class="h4 mb-4">Save Specialty</p>
+
+  <form action="#" th:action="@{/specialty/save}"
+        th:object="${specialty}" method="POST">
+
+    <input type="hidden" th:field="*{id}">
+
+    <input type="text" th:field="*{name}"
+           class="form-control mb-4 w-25" placeholder="Name">
+
+    <input type="text" th:field="*{degreeType}"
+           class="form-control mb-4 w-25" placeholder="Degree Type">
+
+    <input type="text" th:field="*{description}"
+           class="form-control mb-4 w-25" placeholder="Description">
+
+    <input type="text" th:field="*{duration}"
+           class="form-control mb-4 w-25" placeholder="Duration">
+
+    <input type="text" th:field="*{email}"
+           class="form-control mb-4 w-25" placeholder="Email">
+
+    <select th:field="*{department}" class="form-control mb-4 w-25">
+      <option value="" disabled selected>Select Department</option>
+      <option th:each="tempDepartment : ${department}"
+              th:value="${tempDepartment.id}"
+              th:text="${tempDepartment.name}"></option>
+    </select>
+    <button type="submit" class="btn btn-info col-2">Save</button>
+
+  </form>
+
+  <hr>
+<!--  <a th:href="@{/specialty/overview}">Back to Specialty overview</a>-->
+</div>
+
+</body>
+
+</html>

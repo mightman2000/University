@@ -1,8 +1,7 @@
 package com.pharaona.UniversityProject.controllers;
 
 import com.pharaona.UniversityProject.models.Faculty;
-import com.pharaona.UniversityProject.services.FacultyService;
-import jakarta.persistence.Id;
+import com.pharaona.UniversityProject.services.faculty.FacultyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -59,7 +58,6 @@ public class FacultyController {
         return "redirect:/faculty/overview";
     }
 
-    // add new controller with Post after the update (for update and save) for redirection
     @GetMapping("/update")
     public String update (@RequestParam ("facultyId") int theId, Model theModel){
 

@@ -44,10 +44,10 @@
             <td th:text="${tempDepartment.email}"></td>
             <td th:text="${tempDepartment.faculty.name}"></td>
             <td>
-<!--                <a th:href="@{/faculty/update(facultyId=${tempFaculty.id})}"-->
-<!--                   class="btn btn-info btn-sm">-->
-<!--                    Update-->
-<!--                </a>-->
+                <a th:href="@{/department/update(departmentId=${tempDepartment.id})}"
+                   class="btn btn-info btn-sm">
+                    Update
+                </a>
 
                 <a th:href="@{/department/delete(departmentId=${tempDepartment.id})}"
                    class="btn btn-danger btn-sm"

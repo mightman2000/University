@@ -2,8 +2,8 @@ package com.pharaona.UniversityProject.controllers;
 
 import com.pharaona.UniversityProject.models.Department;
 import com.pharaona.UniversityProject.models.Faculty;
-import com.pharaona.UniversityProject.services.DepartmentService;
-import com.pharaona.UniversityProject.services.FacultyService;
+import com.pharaona.UniversityProject.services.department.DepartmentService;
+import com.pharaona.UniversityProject.services.faculty.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +39,7 @@ public class DepartmentController {
     public String showAddForm (Model theModel){
 
         Department theDepartment = new Department();
-        theModel.addAttribute(theDepartment);
+        theModel.addAttribute("department", theDepartment);
 
         // Fetch the list of faculties
         List<Faculty> theFaculty = facultyService.findAll();
@@ -68,6 +68,19 @@ public class DepartmentController {
         departmentService.deleteById(theId);
 
         return "redirect:/department/overview";
+    }
+
+    @GetMapping("/update")
+    public String update (@RequestParam ("departmentId") int theId, Model theModel){
+
+        Department theDepartment = departmentService.findById(theId);
+        theModel.addAttribute("department", theDepartment);
+
+        //fetch faculties for dropdown
+        List<Faculty> theFaculty = facultyService.findAll();
+        theModel.addAttribute("faculty", theFaculty);
+
+        return "department/add-form";
     }
 
 }
