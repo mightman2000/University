@@ -41,4 +41,10 @@ public class SpecialtyServiceImpl implements SpecialtyService{
     public Speciality save(Speciality theSpecialty) {
         return specialtyRepository.save(theSpecialty);
     }
+
+    @Override
+    public void deleteById(int theId) {
+        specialtyRepository.deleteById((theId));
+    }
+
 }

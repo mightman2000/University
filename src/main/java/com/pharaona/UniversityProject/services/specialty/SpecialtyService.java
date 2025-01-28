@@ -13,4 +13,6 @@ public interface SpecialtyService {
 
     Speciality save(Speciality theSpecialty);
 
+    public void deleteById(int theId);
+
 }

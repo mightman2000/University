@@ -1,5 +1,6 @@
 package com.pharaona.UniversityProject.models;
 
+import com.pharaona.UniversityProject.models.junction.DepartmentTeacher;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -26,6 +27,9 @@ public class Department {
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Speciality> specialities;
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private List<DepartmentTeacher> departmentTeachers;
 
     public int getId() {
         return id;
@@ -81,5 +85,13 @@ public class Department {
 
     public void setSpecialities(List<Speciality> specialities) {
         this.specialities = specialities;
+    }
+
+    public List<DepartmentTeacher> getDepartmentTeachers() {
+        return departmentTeachers;
+    }
+
+    public void setDepartmentTeachers(List<DepartmentTeacher> departmentTeachers) {
+        this.departmentTeachers = departmentTeachers;
     }
 }
