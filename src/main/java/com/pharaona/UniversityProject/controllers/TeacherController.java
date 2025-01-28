@@ -22,7 +22,7 @@ public class TeacherController {
     @GetMapping("/overview")
     public String listOfTeachers(Model theModel){
 
-        List<Teacher> teachers = teacherRepository.findAll();
+        List<Teacher> teachers = teacherRepository.findAllWithDepartments();
         theModel.addAttribute("teacher", teachers);
 
         return "teacher/overview";
