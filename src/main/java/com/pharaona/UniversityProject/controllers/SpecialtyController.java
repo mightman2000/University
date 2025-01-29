@@ -77,7 +77,4 @@ public class SpecialtyController {
         return "redirect:/specialty/overview";
 
     }
-
-
-
 }
