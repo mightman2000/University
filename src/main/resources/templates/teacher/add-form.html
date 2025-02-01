@@ -43,6 +43,14 @@
                     th:value="${tempDepartment.id}"
                     th:text="${tempDepartment.name}"></option>
         </select>
+
+        <select name="disciplines" class="form-control mb-4 w-25" multiple>
+            <option value="" disabled selected>Select Disciplines</option>
+            <option th:each="tempDiscipline : ${discipline}"
+                    th:value="${tempDiscipline.id}"
+                    th:text="${tempDiscipline.name}"></option>
+        </select>
+
         <button type="submit" class="btn btn-info col-2">Save</button>
 
     </form>

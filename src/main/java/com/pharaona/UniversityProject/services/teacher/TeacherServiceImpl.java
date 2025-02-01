@@ -1,6 +1,5 @@
 package com.pharaona.UniversityProject.services.teacher;
 
-import com.pharaona.UniversityProject.models.Speciality;
 import com.pharaona.UniversityProject.models.Teacher;
 import com.pharaona.UniversityProject.repositories.TeacherRepository;
 import org.springframework.stereotype.Service;
@@ -19,6 +18,16 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public List<Teacher> findAllWithDepartments() {
         return teacherRepository.findAllWithDepartments();
+    }
+
+    @Override
+    public List<Teacher> findAll() {
+        return teacherRepository.findAll();
+    }
+
+    @Override
+    public List<Teacher> findAllById(List<Integer> theIds) {
+        return teacherRepository.findAllById(theIds);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.pharaona.UniversityProject.models;
 
 import com.pharaona.UniversityProject.models.junction.DepartmentTeacher;
+import com.pharaona.UniversityProject.models.junction.TeacherDiscipline;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -26,10 +27,12 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<DepartmentTeacher> departmentTeachers;
 
-    public Teacher() {
-    }
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    private List<TeacherDiscipline> teacherDiscipline;
 
-    public Teacher(int id, String firstName, String lastName, String email, String phoneNumber, LocalDate dateJoined, List<DepartmentTeacher> departmentTeachers) {
+    public Teacher() {    }
+
+    public Teacher(int id, String firstName, String lastName, String email, String phoneNumber, LocalDate dateJoined, List<DepartmentTeacher> departmentTeachers, List<TeacherDiscipline> teacherDisciplines) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,6 +40,7 @@ public class Teacher {
         this.phoneNumber = phoneNumber;
         this.dateJoined = dateJoined;
         this.departmentTeachers = departmentTeachers;
+        this.teacherDiscipline = teacherDisciplines;
     }
 
     public int getId() {
@@ -91,7 +95,15 @@ public class Teacher {
         return departmentTeachers;
     }
 
-    public void setDepartmentTeachers(List<DepartmentTeacher> departmentTeachers) {
-        this.departmentTeachers = departmentTeachers;
+    public List<TeacherDiscipline> getTeacherDiscipline() {
+        return teacherDiscipline;
+    }
+
+    public void setTeacherDiscipline(List<TeacherDiscipline> teacherDiscipline) {
+        this.teacherDiscipline = teacherDiscipline;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 }
