@@ -51,7 +51,6 @@ public class TeacherController {
 
 
         return "/teacher/add-form";
-
     }
 
     @PostMapping("/save")
@@ -72,7 +71,19 @@ public class TeacherController {
 
         return "redirect:/teacher/overview";
     }
-    //add the html stuff
+
+    @GetMapping("/update")
+    public String update(@RequestParam ("teacherId") int theId, Model theModel){
+
+        Teacher theTeacher = teacherService.findById(theId);
+        theModel.addAttribute("teacher", theTeacher);
+
+        List<Department> theDepartment = departmentService.findAll();
+        theModel.addAttribute("department", theDepartment);
+
+        return "teacher/add-form";
+    }
+
     @GetMapping("/delete")
     public String showAddForm(@RequestParam ("teacherId") int theId){
         teacherService.deleteById(theId);

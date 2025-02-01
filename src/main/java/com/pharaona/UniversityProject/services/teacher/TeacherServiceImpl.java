@@ -6,6 +6,7 @@ import com.pharaona.UniversityProject.repositories.TeacherRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
@@ -19,6 +20,21 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public List<Teacher> findAllWithDepartments() {
         return teacherRepository.findAllWithDepartments();
+    }
+
+    @Override
+    public Teacher findById(int theId) {
+        Optional<Teacher> result = teacherRepository.findById(theId);
+
+        Teacher teacher = null;
+
+        if (result.isPresent()) {
+            teacher = result.get();
+        }
+        else {
+            throw new RuntimeException("Did not find teacher id - " + theId);
+        }
+        return teacher;
     }
 
     @Override

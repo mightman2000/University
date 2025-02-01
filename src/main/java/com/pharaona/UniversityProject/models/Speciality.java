@@ -2,6 +2,8 @@ package com.pharaona.UniversityProject.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Speciality {
 
@@ -22,6 +24,9 @@ public class Speciality {
     @ManyToOne
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
+
+    @OneToMany(mappedBy = "speciality")
+    private List<Course> courses;
 
     public Speciality() {
     }
