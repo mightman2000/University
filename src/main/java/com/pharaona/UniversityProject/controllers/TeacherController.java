@@ -1,17 +1,15 @@
 package com.pharaona.UniversityProject.controllers;
 
 import com.pharaona.UniversityProject.models.Department;
-import com.pharaona.UniversityProject.models.Faculty;
+import com.pharaona.UniversityProject.models.Discipline;
 import com.pharaona.UniversityProject.models.Teacher;
 import com.pharaona.UniversityProject.models.junction.DepartmentTeacher;
-import com.pharaona.UniversityProject.repositories.DepartmentRepository;
-import com.pharaona.UniversityProject.repositories.DepartmentTeacherRepository;
-import com.pharaona.UniversityProject.repositories.TeacherRepository;
+import com.pharaona.UniversityProject.models.junction.TeacherDiscipline;
 import com.pharaona.UniversityProject.services.department.DepartmentService;
 import com.pharaona.UniversityProject.services.department_teacher_service.DepartmentTeacherService;
-import com.pharaona.UniversityProject.services.department_teacher_service.DepartmentTeacherServiceImpl;
+import com.pharaona.UniversityProject.services.discipline.DisciplineService;
 import com.pharaona.UniversityProject.services.teacher.TeacherService;
-import com.pharaona.UniversityProject.services.teacher.TeacherServiceImpl;
+import com.pharaona.UniversityProject.services.teacher_discipline.TeacherDisciplineService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +22,16 @@ public class TeacherController {
 
     private TeacherService teacherService;
     private DepartmentService departmentService;
+    private DisciplineService disciplineService;
     private DepartmentTeacherService departmentTeacherService;
+    private TeacherDisciplineService teacherDisciplineService;
 
-    public TeacherController(TeacherService theTeacherService, DepartmentService theDepartmentService, DepartmentTeacherService theDepartmentTeacherService) {
+    public TeacherController(TeacherService theTeacherService, DepartmentService theDepartmentService, DisciplineService theDisciplineService, DepartmentTeacherService theDepartmentTeacherService, TeacherDisciplineService theTeacherDisciplineService) {
         teacherService = theTeacherService;
         departmentService = theDepartmentService;
+        disciplineService = theDisciplineService;
         departmentTeacherService = theDepartmentTeacherService;
+        teacherDisciplineService = theTeacherDisciplineService;
     }
 
     @GetMapping("/overview")
@@ -45,17 +47,19 @@ public class TeacherController {
     public String showAddForm(Model theModel){
 
         Teacher theTeacher = new Teacher();
-        List<Department> theDepartment = departmentService.findAll();
+        List<Department> theDepartments = departmentService.findAll();
+        List<Discipline> theDisciplines = disciplineService.findAll();
         theModel.addAttribute("teacher", theTeacher);
-        theModel.addAttribute("department", theDepartment);
-
+        theModel.addAttribute("department", theDepartments);
+        theModel.addAttribute("discipline", theDisciplines);
 
         return "/teacher/add-form";
     }
 
     @PostMapping("/save")
     public String saveTeacher(@ModelAttribute("teacher") Teacher theTeacher,
-                              @RequestParam("department") int departmentId) {
+                              @RequestParam("department") int departmentId,
+                              @RequestParam("disciplines") List<Integer> disciplineIds) {
 
         // Step 1: Save the teacher first
         teacherService.save(theTeacher); // Generates an ID
@@ -67,7 +71,15 @@ public class TeacherController {
         DepartmentTeacher departmentTeacher = new DepartmentTeacher();
         departmentTeacher.setTeacher(theTeacher);
         departmentTeacher.setDepartment(selectedDepartment);
-        departmentTeacherService.save(departmentTeacher); // Save relationship
+        departmentTeacherService.save(departmentTeacher);
+
+        List<Discipline> selectedDisciplines = disciplineService.findAllById(disciplineIds);
+        for (Discipline selectedDiscipline : selectedDisciplines){
+            TeacherDiscipline teacherDiscipline = new TeacherDiscipline();
+            teacherDiscipline.setTeacher(theTeacher);
+            teacherDiscipline.setDiscipline(selectedDiscipline);
+            teacherDisciplineService.save(teacherDiscipline); // Save relationship
+        }
 
         return "redirect:/teacher/overview";
     }
