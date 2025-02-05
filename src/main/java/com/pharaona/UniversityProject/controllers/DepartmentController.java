@@ -15,13 +15,13 @@ import java.util.List;
 @RequestMapping("/department")
 public class DepartmentController {
 
-    DepartmentService departmentService;
+    private DepartmentService departmentService;
 
-    FacultyService facultyService;
+    private FacultyService facultyService;
 
     @Autowired
     public DepartmentController (DepartmentService theDepartmentService, FacultyService theFacultyService){
-        this.facultyService = theFacultyService;
+        facultyService = theFacultyService;
         departmentService = theDepartmentService;
     }
 

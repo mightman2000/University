@@ -33,7 +33,7 @@ public class DisciplineServiceImpl implements DisciplineService {
             discipline = result.get();
         }
         else {
-            throw new RuntimeException("Did not find employee id - " + theId);
+            throw new RuntimeException("Did not find discipline id - " + theId);
         }
         return discipline;
     }
