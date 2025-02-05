@@ -39,7 +39,7 @@ public class CourseController {
         theModel.addAttribute("course", theCourse);
 
         List<Speciality> specialities = specialtyService.findAll();
-        theModel.addAttribute("specialities", specialities);
+        theModel.addAttribute("speciality", specialities);
 
         return "course/add-form";
     }
