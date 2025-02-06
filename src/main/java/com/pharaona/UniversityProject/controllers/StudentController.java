@@ -65,7 +65,7 @@ public class StudentController {
         Student theStudent = studentService.findById(theId);
         theModel.addAttribute("student", theStudent);
 
-        //fetch all departments to fill and display the dropdown
+        //fetch all courses to fill and display the dropdown
         List<Course> theCourse = courseService.findAll();
         theModel.addAttribute("course", theCourse);
 
