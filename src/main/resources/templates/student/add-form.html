@@ -33,7 +33,7 @@
         <input type="text" th:field="*{phone}"
                class="form-control mb-4 w-25" placeholder="Phone">
 
-        <!-- Course Dropdown -->
+        <!-- Course Dropdown  sus name="course ako se napravqt 2 dropdowna moje bi ako vzemem dropdowna na godinata ste moje da imame 2 dropdwona"-->
         <select name="course" class="form-control mb-4 w-25">
             <option value="" disabled selected>Select Course</option>
             <option th:each="tempCourse : ${course}"
@@ -49,31 +49,6 @@
     <hr>
     <a th:href="@{/student/overview}">Back to Student overview</a>
 </div>
-
-<!--<script>-->
-<!--    document.getElementById('speciality-select').addEventListener('change', function () {-->
-<!--        const selectedSpecialityId = this.value;-->
-<!--        const yearSelect = document.getElementById('year-select');-->
-<!--        const yearOptions = yearSelect.querySelectorAll('option');-->
-
-<!--        // Enable the year dropdown-->
-<!--        yearSelect.disabled = false;-->
-
-<!--        // Hide all options first-->
-<!--        yearOptions.forEach(option => {-->
-<!--            if (option.value !== "") {-->
-<!--                option.style.display = 'none';-->
-<!--            }-->
-<!--        });-->
-
-<!--        // Show only options that match the selected speciality-->
-<!--        yearOptions.forEach(option => {-->
-<!--            if (option.dataset.specialityId === selectedSpecialityId) {-->
-<!--                option.style.display = 'block';-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
 
 </body>
 
