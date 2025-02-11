@@ -28,6 +28,9 @@ public class Speciality {
     @OneToMany(mappedBy = "speciality")
     private List<Course> courses;
 
+    @OneToMany(mappedBy = "speciality")
+    private List<Curriculum> curriculums;
+
     public Speciality() {
     }
 

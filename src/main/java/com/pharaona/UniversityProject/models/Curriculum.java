@@ -9,31 +9,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Discipline {
+public class Curriculum {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "speciality_id")
+    private Speciality speciality;
 
-    private String description;
-
-    @OneToMany(mappedBy = "discipline", cascade = CascadeType.ALL)
-    private List<TeacherDiscipline> teacherDiscipline;
-
-    @OneToMany(mappedBy = "discipline", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
     private List<DisciplineCurriculum> disciplineCurriculums;
-
-    public String getTeachersNames(){
-        return  teacherDiscipline.stream().map(x -> x.getTeacher().getFullName()).collect(Collectors.joining(", "));
-    }
 
 }

@@ -1,4 +1,4 @@
-package com.pharaona.UniversityProject.services.department_teacher_service;
+package com.pharaona.UniversityProject.services.department_teacher;
 
 import com.pharaona.UniversityProject.models.junction.DepartmentTeacher;
 

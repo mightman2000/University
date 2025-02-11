@@ -6,7 +6,7 @@ import com.pharaona.UniversityProject.models.Teacher;
 import com.pharaona.UniversityProject.models.junction.DepartmentTeacher;
 import com.pharaona.UniversityProject.models.junction.TeacherDiscipline;
 import com.pharaona.UniversityProject.services.department.DepartmentService;
-import com.pharaona.UniversityProject.services.department_teacher_service.DepartmentTeacherService;
+import com.pharaona.UniversityProject.services.department_teacher.DepartmentTeacherService;
 import com.pharaona.UniversityProject.services.discipline.DisciplineService;
 import com.pharaona.UniversityProject.services.teacher.TeacherService;
 import com.pharaona.UniversityProject.services.teacher_discipline.TeacherDisciplineService;
