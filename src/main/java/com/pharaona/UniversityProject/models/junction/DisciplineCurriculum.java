@@ -24,7 +24,7 @@ public class DisciplineCurriculum {
 
     private int academicHours;
 
-    private int gradingType;
+    private String gradingType;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "discipline_id")

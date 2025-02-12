@@ -25,7 +25,7 @@ public class Curriculum {
     @JoinColumn(name = "speciality_id")
     private Speciality speciality;
 
-    @OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = CascadeType.ALL)
     private List<DisciplineCurriculum> disciplineCurriculums;
 
 }
