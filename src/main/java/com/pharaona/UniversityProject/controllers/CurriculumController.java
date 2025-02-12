@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -31,8 +32,16 @@ public class CurriculumController {
         List<Curriculum> curricula = curriculumService.findAllWithDisciplines();
         theModel.addAttribute("curricula", curricula);
 
-
         return "curriculum/overview";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("curriculumId") int theId) {
+
+        curriculumService.deleteById(theId);
+
+        return "redirect:/curriculum/overview";
+
     }
 
 }

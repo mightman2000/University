@@ -19,4 +19,9 @@ public class CurriculumServiceImpl implements CurriculumService{
     public List<Curriculum> findAllWithDisciplines() {
        return curriculumRepository.findAllWithDisciplines();
     }
+
+    @Override
+    public void deleteById(int theId) {
+        curriculumRepository.deleteById(theId);
+    }
 }

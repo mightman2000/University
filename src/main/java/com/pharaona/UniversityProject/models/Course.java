@@ -19,11 +19,15 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String academicYear;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "speciality_id")
     private Speciality speciality;
 
-    private String academicYear;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "curriculum_id")
+    private Curriculum curriculum;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Student> students;

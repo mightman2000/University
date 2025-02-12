@@ -9,4 +9,6 @@ public interface CurriculumService {
 
     public List<Curriculum> findAllWithDisciplines();
 
+    void deleteById(int theId);
+
 }

@@ -1,7 +1,6 @@
 package com.pharaona.UniversityProject.models;
 
 import com.pharaona.UniversityProject.models.junction.DisciplineCurriculum;
-import com.pharaona.UniversityProject.models.junction.TeacherDiscipline;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +23,9 @@ public class Curriculum {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "speciality_id")
     private Speciality speciality;
+
+    @OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<Course> courses;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = CascadeType.ALL)
     private List<DisciplineCurriculum> disciplineCurriculums;

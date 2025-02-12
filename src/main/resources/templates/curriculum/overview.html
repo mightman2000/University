@@ -26,7 +26,7 @@
         <tr>
             <th>Id</th>
             <th>Curriculum Name</th>  <!-- speciality -->>
-            <th>Subject</th>
+            <th>Discipline</th>
 <!--            <th>Year</th>-->
             <th>Credits</th>
             <th>Academic hours</th>
@@ -39,6 +39,7 @@
         <tr th:each="tempCurricula : ${curricula}">
             <td th:text="${tempCurricula.id}" rowspan="${#lists.size(tempCurricula.disciplineCurriculums)}"></td>
             <td th:text="${tempCurricula.speciality.name}" rowspan="${#lists.size(tempCurricula.disciplineCurriculums)}"></td>
+<!--            <td th:text="${tempCurricula.courses}" rowspan="${#lists.size(tempCurricula.disciplineCurriculums)}"></td>-->
 
             <td th:each="dc, iter : ${tempCurricula.disciplineCurriculums}">
                 <span th:text="${dc.discipline.name}"></span>
@@ -46,7 +47,7 @@
             <td th:each="dc, iter : ${tempCurricula.disciplineCurriculums}" th:text="${dc.credits}"></td>
             <td th:each="dc, iter : ${tempCurricula.disciplineCurriculums}" th:text="${dc.academicHours}"></td>
             <td th:each="dc, iter : ${tempCurricula.disciplineCurriculums}" th:text="${dc.gradingType}"></td>
-        </tr>
+
 
         <td>
 
@@ -55,14 +56,15 @@
 <!--                    Update-->
 <!--                </a>-->
 
-<!--                <a th:href="@{/specialty/delete(specialtyId=${tempSpecialty.id})}"-->
-<!--                   class="btn btn-danger btn-sm"-->
-<!--                   onclick="if (!(confirm('Are you sure you want to delete this Specialty'))) return false">-->
+                <a th:href="@{/curriculum/delete(curriculumId=${tempCurricula.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Are you sure you want to delete this Curriculum'))) return false">
 
-<!--                    Delete-->
-<!--                </a>-->
+                    Delete
+                </a>
 
             </td>
+
         </tr>
         </tbody>
 
