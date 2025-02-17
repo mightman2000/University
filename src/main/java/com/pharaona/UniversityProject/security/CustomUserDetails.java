@@ -1,7 +1,9 @@
 package com.pharaona.UniversityProject.security;
 
+import com.pharaona.UniversityProject.enums.Role;
 import com.pharaona.UniversityProject.models.AppUser;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -17,10 +19,11 @@ public class CustomUserDetails implements UserDetails {
         this.appUser = appUser;
     }
 
+
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
+    public Collection<? extends GrantedAuthority> getAuthorities() { // added gpt
+        return List.of(new SimpleGrantedAuthority("ROLE_" + appUser.getRole().name())); // added gpt
+    } // added gpt
 
     @Override
     public String getPassword() {
@@ -59,5 +62,9 @@ public class CustomUserDetails implements UserDetails {
     public String getLastName() {
         return appUser.getLastName();
     }
+
+    public Role getRole() { // added gpt
+        return appUser.getRole(); // added gpt
+    } // added gpt
 
 }

@@ -1,5 +1,6 @@
 package com.pharaona.UniversityProject.models;
 
+import com.pharaona.UniversityProject.enums.Role;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +16,9 @@ public class AppUser {
     @Column(unique = true)
     private String email;
     private String password;
+
+    @Enumerated(EnumType.STRING) // added gpt
+    private Role role;
 
     public int getId() {
         return id;
@@ -54,5 +58,13 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

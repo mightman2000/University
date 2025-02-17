@@ -13,28 +13,22 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception{
-
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/login"))
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/login") // Disable CSRF for login endpoint
-                )//for postman
-                .authorizeHttpRequests( auth -> auth
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/login")) // Disable CSRF for login
+                .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/").permitAll()
-                        //.requestMatchers("/register").permitAll()
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/logout").permitAll()
-                        .requestMatchers("/error").permitAll()
-                        .requestMatchers("/home").permitAll()
+                        .requestMatchers("/login", "/logout", "/error", "/home").permitAll()
                         .requestMatchers("/static/**", "/images/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN") // added gpt
+                        //.requestMatchers("/teacher/**").hasAnyRole("TEACHER", "ADMIN") // added gpt
+                        //.requestMatchers("/student/**").hasAnyRole("STUDENT", "TEACHER", "ADMIN") // added gpt
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        //.loginPage("/login")
-                        .usernameParameter("email") //tell spring security to look for email instead of username
-                        .defaultSuccessUrl("/home",true)
+                        .usernameParameter("email") // Look for email instead of username
+                        .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )
                 .logout(config -> config.logoutSuccessUrl("/home"))
@@ -46,6 +40,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
+
 
 
 
