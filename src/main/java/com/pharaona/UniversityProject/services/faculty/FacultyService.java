@@ -14,5 +14,6 @@ public interface FacultyService {
 
     void deleteById(int theId);
 
+    public boolean isEmailUnique(String email);
 
 }

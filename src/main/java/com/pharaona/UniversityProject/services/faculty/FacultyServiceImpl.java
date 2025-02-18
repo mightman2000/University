@@ -47,4 +47,9 @@ public class FacultyServiceImpl implements FacultyService {
     public void deleteById(int theId) {
         facultyRepository.deleteById(theId);
     }
+
+    public boolean isEmailUnique(String email) {
+        return facultyRepository.findByEmail(email) == null;
+    }
+
 }

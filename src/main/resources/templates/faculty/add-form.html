@@ -17,29 +17,36 @@
 
     <p class="h4 mb-4">Save Faculty</p>
 
-    <form action="#" th:action="@{/faculty/save}"
-          th:object="${faculty}" method="POST">
-
+    <form action="#" th:action="@{/faculty/save}" th:object="${faculty}" method="POST">
         <input type="hidden" th:field="*{id}">
 
         <input type="text" th:field="*{name}"
-               class="for-control mb-4 w-25" placeholder="Name">
+               class="form-control mb-4 w-25" placeholder="Name"
+               required minlength="3" maxlength="30">
 
         <input type="text" th:field="*{description}"
-               class="for-control mb-4 w-25" placeholder="Description">
+               class="form-control mb-4 w-25" placeholder="Description"
+               required>
 
         <input type="text" th:field="*{location}"
-               class="for-control mb-4 w-25" placeholder="Location">
+               class="form-control mb-4 w-25" placeholder="Location"
+               required>
 
         <input type="text" th:field="*{phoneNumber}"
-               class="for-control mb-4 w-25" placeholder="Phone number">
+               class="form-control mb-4 w-25" placeholder="Phone number"
+               required pattern="\d{10}" title="Phone number must be 10 digits">
 
-        <input type="text" th:field="*{email}"
-               class="for-control mb-4 w-25" placeholder="Email">
+        <input type="email" th:field="*{email}"
+               class="form-control mb-4 w-25" placeholder="Email"
+               required>
+
+        <div th:if="${#fields.hasErrors('email')}" class="text-danger">
+            <span th:errors="*{email}"></span>
+        </div>
 
         <button type="submit" class="btn btn-info col-2">Save</button>
-
     </form>
+
 
     <hr>
     <a th:href="@{/faculty/overview}">Back to Faculty overview</a>

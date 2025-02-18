@@ -2,7 +2,9 @@ package com.pharaona.UniversityProject.controllers;
 
 import com.pharaona.UniversityProject.models.Faculty;
 import com.pharaona.UniversityProject.services.faculty.FacultyService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
@@ -51,10 +53,17 @@ public class FacultyController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute ("faculty") Faculty theFaculty){
+    public String save(@Valid @ModelAttribute("faculty") Faculty theFaculty, BindingResult result) {
+        // Check if the email is unique
+        if (!facultyService.isEmailUnique(theFaculty.getEmail())) {
+            result.rejectValue("email", "error.email", "Email is already in use");
+        }
+
+        if (result.hasErrors()) {
+            return "/faculty/add-form";  // Return to the form if there are errors
+        }
 
         facultyService.save(theFaculty);
-
         return "redirect:/faculty/overview";
     }
 
