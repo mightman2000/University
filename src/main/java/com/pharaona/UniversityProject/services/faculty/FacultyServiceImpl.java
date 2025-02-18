@@ -4,6 +4,7 @@ import com.pharaona.UniversityProject.models.Faculty;
 import com.pharaona.UniversityProject.repositories.FacultyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +51,12 @@ public class FacultyServiceImpl implements FacultyService {
 
     public boolean isEmailUnique(String email) {
         return facultyRepository.findByEmail(email) == null;
+    }
+
+    @Transactional
+    @Override
+    public void saveAllFaculties(List<Faculty> faculties) {
+        facultyRepository.saveAll(faculties);
     }
 
 }

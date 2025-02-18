@@ -3,11 +3,15 @@ package com.pharaona.UniversityProject.controllers;
 import com.pharaona.UniversityProject.models.Faculty;
 import com.pharaona.UniversityProject.services.faculty.FacultyService;
 import jakarta.validation.Valid;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -82,6 +86,13 @@ public class FacultyController {
         facultyService.deleteById(theId);
 
         return "redirect:/faculty/overview";
+    }
+
+    @PostMapping("/upload-json")
+    public ResponseEntity<String> uploadFaculty(@RequestBody List<Faculty> facultyList){
+
+        facultyService.saveAllFaculties(facultyList);
+        return ResponseEntity.ok("Faculty data uploaded successfully.");
     }
 
 }

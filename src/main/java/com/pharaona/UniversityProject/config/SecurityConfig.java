@@ -15,12 +15,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf -> csrf.disable())
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/login")) // Disable CSRF for login
+//                .csrf(csrf -> csrf.ignoringRequestMatchers("/login")) // Disable CSRF for login
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/").permitAll()
-                        .requestMatchers("/login", "/logout", "/error", "/home").permitAll()
+                        .requestMatchers("/login", "/logout", "/error", "/home","/").permitAll()
                         .requestMatchers("/static/**", "/images/**").permitAll()
+                        .requestMatchers("/faculty/upload-json").hasRole("ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN") // added gpt
                         //.requestMatchers("/teacher/**").hasAnyRole("TEACHER", "ADMIN") // added gpt
                         //.requestMatchers("/student/**").hasAnyRole("STUDENT", "TEACHER", "ADMIN") // added gpt

@@ -16,4 +16,6 @@ public interface FacultyService {
 
     public boolean isEmailUnique(String email);
 
+    void saveAllFaculties(List<Faculty> faculties);
+
 }
