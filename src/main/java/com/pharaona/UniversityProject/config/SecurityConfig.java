@@ -19,12 +19,16 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/login"))
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/login") // Disable CSRF for login endpoint
+                        .ignoringRequestMatchers("/login")
+                        .ignoringRequestMatchers("/test/save")
+                        .ignoringRequestMatchers("/test/**") // Disable CSRF for login endpoint
                 )//for postman
                 .authorizeHttpRequests( auth -> auth
                         .requestMatchers("/").permitAll()
                         //.requestMatchers("/register").permitAll()
                         .requestMatchers("/login").permitAll()
+                        .requestMatchers("/test/**").permitAll()
+                        .requestMatchers("/test/save").permitAll()
                         .requestMatchers("/logout").permitAll()
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/home").permitAll()

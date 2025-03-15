@@ -26,7 +26,7 @@ public class Student {
     private String phone;
 
     @ManyToOne
-    @JoinColumn(name = "course_id", nullable = false)
+    @JoinColumn(name = "course_id")
     private Course course;
 
 

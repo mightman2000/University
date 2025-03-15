@@ -20,7 +20,7 @@ public class StudentGroup {
     private String groupNumber;
 
     @ManyToOne
-    @JoinColumn(name = "course_id", nullable = false) // Foreign Key to Course
+    @JoinColumn(name = "course_id") // Foreign Key to Course
     private Course course;
 
 }

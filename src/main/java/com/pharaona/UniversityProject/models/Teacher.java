@@ -30,9 +30,12 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<TeacherDiscipline> teacherDiscipline;
 
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    private List<LessonEvent> lessonEvents;
+
     public Teacher() {    }
 
-    public Teacher(int id, String firstName, String lastName, String email, String phoneNumber, LocalDate dateJoined, List<DepartmentTeacher> departmentTeachers, List<TeacherDiscipline> teacherDisciplines) {
+    public Teacher(int id, String firstName, String lastName, String email, String phoneNumber, LocalDate dateJoined, List<DepartmentTeacher> departmentTeachers, List<TeacherDiscipline> teacherDisciplines, List<LessonEvent> lessonEvents) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -41,6 +44,7 @@ public class Teacher {
         this.dateJoined = dateJoined;
         this.departmentTeachers = departmentTeachers;
         this.teacherDiscipline = teacherDisciplines;
+        this.lessonEvents = lessonEvents;
     }
 
     public int getId() {
@@ -105,5 +109,13 @@ public class Teacher {
 
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+
+    public List<LessonEvent> getLessonEvents() {
+        return lessonEvents;
+    }
+
+    public void setLessonEvents(List<LessonEvent> lessonEvents) {
+        this.lessonEvents = lessonEvents;
     }
 }

@@ -20,10 +20,10 @@ public class TeacherDiscipline {
     private int teacherDisciplineId;
 
     @ManyToOne
-    @JoinColumn(name = "discipline_id", nullable = false)
+    @JoinColumn(name = "discipline_id")
     private Discipline discipline;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id", nullable = false)
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 }
