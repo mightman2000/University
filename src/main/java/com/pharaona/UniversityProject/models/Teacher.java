@@ -19,7 +19,7 @@ import java.util.List;
 public class Teacher {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String firstName;
@@ -37,6 +37,9 @@ public class Teacher {
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<TeacherDiscipline> teacherDiscipline;
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    private List<LessonEvent> lessonEvents;
 
     public String getFullName() {
         return firstName + " " + lastName;

@@ -32,6 +32,9 @@ public class Discipline {
     @OneToMany(mappedBy = "discipline", cascade = CascadeType.ALL)
     private List<DisciplineCurriculum> disciplineCurriculums;
 
+    @OneToMany(mappedBy = "discipline", cascade = CascadeType.ALL)
+    private List<Lesson> lessons;
+
     public String getTeachersNames(){
         return  teacherDiscipline.stream().map(x -> x.getTeacher().getFullName()).collect(Collectors.joining(", "));
     }
